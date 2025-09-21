@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Grid Carousel CSS-only - Yuan / Dio / Arkan (final)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+  /* RESET */
+  *{
+    box-sizing:border-box
+  }
+  html,body{
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
+    background:#0f0f10;
+    color:white;
+    font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial
+  }
+  a{
+    color:white;
+    text-decoration:none
+  }
+
+  /* hidden radios (carousel state) */
+  .state { 
+    position:absolute; 
+    left:-9999px; 
+  }
+
+  /* PARENT GRID */
+  .parent {
+    width:100vw;
+    height:100vh;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 8px;
+    padding: 8px;
+  }
+
+  /* base style for cells */
+  .parent > div, .parent > a, .parent > label {
+    background: rgba(255,255,255,0.03);
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+
+  .div14 { grid-column: 1 / 3;  grid-row: 4 / 7; }
+  .div13 { grid-column: 9 / 11; grid-row: 4 / 7; }
+  .div21 { grid-column: 3 / 9; grid-row: 1 / 10; 
+           position:relative; 
+           border-radius:18px; 
+           overflow:hidden; 
+           background:#111; 
+          }
+  .div22 { grid-column: 1 / 3; grid-row: 1 / 2; }
+  .div23 { grid-column: 1 / 2; grid-row: 2 / 4; }
+  .div25 { grid-column: 2 / 3; grid-row: 2 / 4; }
+  .div26 { grid-column: 1 / 2; grid-row: 7 / 9; }
+  .div27 { grid-column: 2 / 3; grid-row: 7 / 9; }
+  .div28 { grid-column: 1 / 3; grid-row: 9 / 10; }
+  .div29 { grid-column: 9 / 11; grid-row: 1 / 2; }
+  .div30 { grid-column: 9 / 10; grid-row: 2 / 4; }
+  .div31 { grid-column: 10 / 11; grid-row: 2 / 4; }
+  .div32 { grid-column: 9 / 10; grid-row: 7 / 9; }
+  .div33 { grid-column: 10 / 11; grid-row: 7 / 9; }
+  .div34 { grid-column: 9 / 11; grid-row: 9 / 10; }
+
+  /* ---------- small tile internals ---------- */
+  .person-link { 
+    width:100%; 
+    height:100%; 
+    display:flex; 
+    position:relative; 
+    align-items:center;
+    justify-content:center;
+    font-size:28px; /* ukuran ikon */
+  }
+
+  .person-link i { 
+    transition: opacity .12s ease, transform .12s ease; 
+  }
+
+  .person-link .person-name {
+    position:absolute;
+    font-weight:700;
+    font-size:clamp(13px,1.6vw,18px);
+    opacity:0;
+    transform: translateY(6px) scale(.98);
+    transition: opacity .12s ease, transform .12s ease;
+    pointer-events:none;
+  }
+
+  /* efek hover */
+  .person-link:hover i,
+  .person-link:focus i,
+  .person-link:focus-within i {
+    opacity:0; 
+    transform:scale(.96);
+  }
+  .person-link:hover .person-name,
+  .person-link:focus .person-name,
+  .person-link:focus-within .person-name {
+    opacity:1; 
+  }
+
+  .person-link svg { 
+    width:28px; 
+    height:28px; 
+  }
+
+  /* ---------- slides (use <img> for proper blurring) ---------- */
+  .div21 .slide {
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition: opacity .22s ease;
+  }
+  .div21 .slide img.slide-img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  /* Only the checked slide is visible */
+  #s-yuan:checked  ~ .parent .div21 .slide-yuan  { 
+    opacity:1; 
+    pointer-events:auto; 
+  }
+  #s-dio:checked   ~ .parent .div21 .slide-dio   { 
+    opacity:1; 
+    pointer-events:auto; 
+  }
+  #s-arkan:checked ~ .parent .div21 .slide-arkan { 
+    opacity:1; 
+    pointer-events:auto; 
+  }
+
+  /* ---------- caption overlay (will blur the image behind using backdrop-filter) ---------- */
+  /* Each slide contains its own caption overlay. Caption is hidden by default. */
+  .div21 .slide .caption {
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    opacity:0;
+    transition: opacity .12s ease;
+  }
+  .div21 .slide .caption .text {
+    color:white;
+    font-weight:700;
+    font-size:clamp(18px,2.8vw,28px);
+  }
+
+  /* Show caption (and apply blur) only when hovering main area AND this slide is active.
+     Need combinational selector: radio checked + parent hover + specific slide. */
+  #s-yuan:checked  ~ .parent .div21:hover .slide-yuan  .caption  { 
+    opacity:1; 
+    backdrop-filter: blur(6px); 
+    background: rgba(255,255,255,0.04); 
+  }
+  #s-dio:checked   ~ .parent .div21:hover .slide-dio   .caption  { 
+    opacity:1; 
+    backdrop-filter: blur(6px); 
+    background: rgba(255,255,255,0.04); 
+  }
+  #s-arkan:checked ~ .parent .div21:hover .slide-arkan .caption  { 
+    opacity:1; 
+    backdrop-filter: blur(6px); 
+    background: rgba(255,255,255,0.04); 
+  }
+
+  /* caption inner subtext (smaller) */
+  .div21 .slide .caption .sub {
+    font-weight:500;
+    font-size:clamp(12px,1.1vw,16px);
+  }
+
+  /* ----------
+     ARROW controls: hide all by default, show only the relevant one per checked state
+     They fill only their cell — not absolute — so no overlay outside cell.
+     ---------- */
+  .div14 label, .div13 label { width:100%; height:100%; display:none; align-items:center; justify-content:center; cursor:pointer; }
+  /* prev/next visible only for the active radio */
+  #s-yuan:checked  ~ .parent .div14 label.prev-yuan, #s-dio:checked   ~ .parent .div14 label.prev-dio, #s-arkan:checked ~ .parent .div14 label.prev-arkan{ 
+    display:flex; 
+  }
+
+  #s-yuan:checked  ~ .parent .div13 label.next-yuan,#s-dio:checked   ~ .parent .div13 label.next-dio, #s-arkan:checked ~ .parent .div13 label.next-arkan {
+    display:flex; 
+  }
+
+  .div14 label .arrow, .div13 label .arrow {
+    width:68%; 
+    height:68%; 
+    border-radius:12px; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center;
+    background: rgba(255,255,255,0.04); 
+    font-size:1.6rem; 
+    font-weight:700; 
+    transition: transform .12s ease, background .12s ease;
+  }
+  .div14 label:hover .arrow, .div13 label:hover .arrow { 
+    transform:translateY(-2px); 
+    background: rgba(255,255,255,0.07); 
+  }
+
+  /* responsive */
+  @media (max-width:720px){
+    .parent { gap:6px; padding:6px }
+  }
+</style>
+</head>
+<body>
+
+<!-- radios (state) -->
+<input class="state" type="radio" name="slide" id="s-yuan" checked>
+<input class="state" type="radio" name="slide" id="s-dio">
+<input class="state" type="radio" name="slide" id="s-arkan">
+
+<div class="parent" aria-live="polite">
+
+  <!-- LEFT (prev) -->
+  <div class="div14" aria-hidden="false" tabindex="-1">
+    <label class="prev-yuan" for="s-arkan" title="Prev (Arkan)"><div class="arrow"><i class="fa-solid fa-arrow-left"></i></div></label>
+    <label class="prev-dio"  for="s-yuan"  title="Prev (Yuan)"><div class="arrow"><i class="fa-solid fa-arrow-left"></i></div></label>
+    <label class="prev-arkan"for="s-dio"   title="Prev (Dio)"><div class="arrow"><i class="fa-solid fa-arrow-left"></i></div></label>
+  </div>
+
+  <!-- RIGHT (next) -->
+  <div class="div13" aria-hidden="false" tabindex="-1">
+    <label class="next-yuan" for="s-dio"  title="Next (Dio)"><div class="arrow"><i class="fa-solid fa-arrow-right"></i></div></label>
+    <label class="next-dio"  for="s-arkan" title="Next (Arkan)"><div class="arrow"><i class="fa-solid fa-arrow-right"></i></div></label>
+    <label class="next-arkan"for="s-yuan" title="Next (Yuan)"><div class="arrow"><i class="fa-solid fa-arrow-right"></i></div></label>
+  </div>
+
+  <!-- MAIN (center) -->
+  <div class="div21" role="region" aria-label="Konten Utama" tabindex="0">
+
+    <!-- slide Yuan -->
+    <div class="slide slide-yuan" aria-hidden="false">
+      <img class="slide-img" src="image/desktop/2_yuan.png" alt="Yuan">
+      <div class="caption" >
+        <div class="text">
+          <div>Yuan Banny Albyan</div>
+          <div class="sub">Mahasiswa Departemen Teknologi Informasi ITS, punya rasa penasaran tinggi, goal-oriented, pengalaman di robotika dan app development.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- slide Dio -->
+    <div class="slide slide-dio" >
+      <img class="slide-img" src="image/desktop/2_dio.png" alt="Dio">
+      <div class="caption" >
+        <div class="text">
+          <div>Dio</div>
+          <div class="sub">Dio, Mahasiswa Departemen Teknologi Informasi ITS — penasaran, realis, pengalaman di bidang IT dan robotika.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- slide Arkan -->
+    <div class="slide slide-arkan" >
+      <img class="slide-img" src="image/desktop/2_arkan.png" alt="Arkan">
+      <div class="caption" >
+        <div class="text">
+          <div>Arkan</div>
+          <div class="sub">Arkan, Mahasiswa Departemen Teknologi Informasi ITS — minat di robotika & app development, goal oriented.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- indicators -->
+    <div class="indicators" role="tablist" aria-label="Slide indicators">
+      <label for="s-yuan" role="tab" aria-label="Pilih Yuan" tabindex="0"></label>
+      <label for="s-dio" role="tab" aria-label="Pilih Dio" tabindex="0"></label>
+      <label for="s-arkan" role="tab" aria-label="Pilih Arkan" tabindex="0"></label>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM tiles -->
+  <a class="div22 person-link" href="https://instagram.com/weng._136" target="_self" >
+    <i class="fa-brands fa-instagram"></i>
+    <span class="person-name">Yuan</span>
+  </a>
+
+  <a class="div23 person-link" href="https://instagram.com/your_dio_profile" target="_self" >
+    <i class="fa-brands fa-instagram"></i>
+    <span class="person-name">Dio</span>
+  </a>
+
+  <a class="div25 person-link" href="https://instagram.com/your_arkan_profile" target="_self" >
+    <i class="fa-brands fa-instagram"></i>
+    <span class="person-name">Arkan</span>
+  </a>
+
+  <!-- LINKEDIN tiles -->
+  <a class="div26 person-link" href="https://www.linkedin.com/in/yuan-banny-albyan-670338312?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_self" >
+    <i class="fa-brands fa-linkedin"></i>
+    <span class="person-name">Yuan</span>
+  </a>
+
+  <a class="div27 person-link" href="https://linkedin.com/in/your_dio_profile" target="_self" >
+    <i class="fa-brands fa-linkedin"></i>
+    <span class="person-name">Dio</span>
+  </a>
+
+  <a class="div28 person-link" href="https://linkedin.com/in/your_arkan_profile" target="_self" >
+    <i class="fa-brands fa-linkedin"></i>
+    <span class="person-name">Arkan</span>
+  </a>
+
+  <!-- GITHUB tiles -->
+  <a class="div29 person-link" href="https://github.com/youone-its" target="_self" >
+    <i class="fa-brands fa-square-github"></i>
+    <span class="person-name">Yuan</span>
+  </a>
+
+  <a class="div30 person-link" href="https://github.com/your_dio_profile" target="_self" >
+    <i class="fa-brands fa-square-github"></i>
+    <span class="person-name">Dio</span>
+  </a>
+
+  <a class="div31 person-link" href="https://github.com/your_arkan_profile" target="_self" >
+    <i class="fa-brands fa-square-github"></i>
+    <span class="person-name">Arkan</span>
+  </a>
+
+  <!-- CV tiles -->
+  <a class="div32 person-link" href="cv/cvyuan.html" target="_self" >
+    <i>CV</i>
+    <span class="person-name">Yuan</span>
+  </a>
+
+  <a class="div33 person-link" href="cv/dio.html" target="_self" >
+    <i>CV</i>
+    <span class="person-name">Dio</span>
+  </a>
+
+  <a class="div34 person-link" href="cv/arkan.html" target="_self" >
+    <i>CV</i>
+    <span class="person-name">Arkan</span>
+  </a>
+
+</div>
+</body>
+</html>
