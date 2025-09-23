@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV - Mohamad Arkan Zahir</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #f59e0b;
+        --dark: #1f2937;
+        --light: #f8fafc;
+        --gray: #6b7280;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: var(--dark);
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        min-height: 100vh;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 1.5rem;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .cv-container {
+        max-width: 1000px;
+        margin: 100px auto 50px;
+        padding: 0 5%;
+      }
+
+      .cv-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .cv-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+        border: 5px solid white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .cv-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .cv-header h2 {
+        font-size: 1.2rem;
+        color: var(--gray);
+        font-weight: 400;
+      }
+
+      .cv-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 2rem;
+      }
+
+      .cv-sidebar {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        height: fit-content;
+      }
+
+      .cv-main {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-info {
+        margin-bottom: 2rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        color: var(--gray);
+      }
+
+      .contact-item i {
+        width: 20px;
+        margin-right: 10px;
+        color: var(--primary);
+      }
+
+      .cv-section {
+        margin-bottom: 2rem;
+      }
+
+      .cv-section h3 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--light);
+        font-size: 1.3rem;
+      }
+
+      .experience-item,
+      .education-item {
+        margin-bottom: 1.5rem;
+        padding-left: 1rem;
+        border-left: 3px solid var(--primary);
+      }
+
+      .experience-item h4,
+      .education-item h4 {
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .experience-date,
+      .education-date {
+        color: var(--gray);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        font-style: italic;
+      }
+
+      .experience-item ul {
+        padding-left: 1.5rem;
+        color: var(--gray);
+      }
+
+      .experience-item li {
+        margin-bottom: 0.3rem;
+      }
+
+      .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .skill-tag {
+        background: var(--primary);
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        transition: var(--transition);
+      }
+
+      .skill-tag:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 3px 10px rgba(37, 99, 235, 0.3);
+      }
+
+      .skill-category {
+        margin-bottom: 1rem;
+      }
+
+      .skill-category h4 {
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--primary);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        border: 2px solid var(--primary);
+        margin-top: 2rem;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      }
+
+      .back-button:hover {
+        background: transparent;
+        color: var(--primary);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .cv-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cv-header h1 {
+          font-size: 2rem;
+        }
+
+        .mobile-menu-button {
+          display: block;
+        }
+      }
+
+      /* Mobile Menu */
+      .mobile-menu-button {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--dark);
+        cursor: pointer;
+      }
+
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+      }
+
+      .mobile-nav.active {
+        display: block;
+      }
+
+      .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+      }
+
+      .mobile-nav-links a {
+        padding: 1rem;
+        text-decoration: none;
+        color: var(--dark);
+        border-bottom: 1px solid var(--light);
+        transition: var(--transition);
+      }
+
+      .mobile-nav-links a:hover {
+        color: var(--primary);
+        background: var(--light);
+      }
+
+      @media (max-width: 768px) {
+        .mobile-menu-button {
+          display: block;
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <a href="index.html" class="logo">ArkanZahir</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="cv.html" style="color: var(--primary)">CV</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <button class="mobile-menu-button" id="mobileMenuButton">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-links">
+        <a href="index.html">Home</a>
+        <a href="cv.html">CV</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+
+    <!-- CV Content -->
+    <div class="cv-container">
+      <div class="cv-header">
+        <div class="cv-photo">
+          <i class="fas fa-user"></i>
+        </div>
+        <h1>Mohamad Arkan Zahir Asyafiq</h1>
+        <h2>Mahasiswa Teknologi Informasi Semester 2</h2>
+      </div>
+
+      <div class="cv-grid">
+        <!-- Sidebar -->
+        <div class="cv-sidebar">
+          <div class="contact-info">
+            <h3>Kontak</h3>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>089612030168</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>arkanzahir86@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Surabaya, Indonesia</span>
+            </div>
+          </div>
+
+          <div class="cv-section">
+            <h3>Skills</h3>
+            <div class="skill-category">
+              <h4>Komunikasi</h4>
+              <div class="skills-list">
+                <span class="skill-tag">Komunikasi Lisan</span>
+                <span class="skill-tag">Teamwork</span>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h4>Manajemen</h4>
+              <div class="skills-list">
+                <span class="skill-tag">Manajemen Waktu</span>
+                <span class="skill-tag">Leadership</span>
+                <span class="skill-tag">Event Planning</span>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h4>Teknologi</h4>
+              <div class="skills-list">
+                <span class="skill-tag">Microsoft Excel</span>
+                <span class="skill-tag">Microsoft PowerPoint</span>
+                <span class="skill-tag">HTML/CSS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="cv-main">
+          <div class="cv-section">
+            <h3>Summary</h3>
+            <p>
+              Saya Mohamad Arkan Zahir Asyafiq, seorang mahasiswa aktif semester
+              2 dari Departemen Teknologi Informasi, Institut Teknologi Sepuluh
+              Nopember, yang memiliki minat besar dalam kepanitiaan, organisasi,
+              manajemen acara, pengembangan sumber daya manusia, serta perhatian
+              pada aspek kesehatan dan keselamatan dalam kegiatan.
+            </p>
+            <p>
+              Kelebihan saya adalah kemampuan kerja tim yang baik, cepat
+              tanggap, proaktif, dan berorientasi pada detail, sementara
+              kekurangan saya terletak pada komunikasi yang kadang kurang
+              efektif, terutama dalam situasi yang membutuhkan klarifikasi
+              cepat.
+            </p>
+          </div>
+
+          <div class="cv-section">
+            <h3>Experience</h3>
+
+            <div class="experience-item">
+              <h4>Divisi Acara - PMR WIRA</h4>
+              <div class="experience-date">Januari 2023 - Juli 2024</div>
+              <ul>
+                <li>
+                  Membantu menentukan tema acara dan detail lainnya seperti
+                  rundown, anggaran, dan kebutuhan teknis
+                </li>
+                <li>
+                  Mengumpulkan dan menyiapkan bahan yang diperlukan untuk acara
+                </li>
+                <li>
+                  Bertanggung Jawab mengurus bagian registrasi, konsumsi,
+                  peralatan dan logistik
+                </li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h4>Divisi Dakwah - OSIS SMA</h4>
+              <div class="experience-date">Januari 2023 - Agustus 2024</div>
+              <ul>
+                <li>Menjadi ketua divisi dakwah</li>
+                <li>
+                  Membuat timeline dan anggaran untuk setiap kegiatan yang
+                  direncanakan
+                </li>
+                <li>
+                  Memimpin dan mengarahkan anggota divisi dalam setiap kegiatan
+                </li>
+                <li>
+                  Menyusun laporan pertanggung jawaban kegiatan dan menyampaikan
+                  rekomendasi untuk perbaikan
+                </li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h4>Divisi Acara - Amaliyah Dakwah</h4>
+              <div class="experience-date">April 2023 - Mei 2023</div>
+              <ul>
+                <li>Menyusun dan mengatur jadwal kegiatan</li>
+                <li>Berkoordinasi dengan kepala desa perihal perizinan</li>
+                <li>Melakukan survey tempat acara</li>
+                <li>Mengelola kegiatan perlombaan antar TPO di Purbalingga</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h4>Mentor - MPLS MAWI Kebarongan</h4>
+              <div class="experience-date">Juli 2022 - Agustus 2022</div>
+              <ul>
+                <li>
+                  Menyambut siswa baru dengan ramah dan membantu mereka merasa
+                  nyaman di lingkungan sekolah
+                </li>
+                <li>
+                  Mengajak siswa baru berkeliling sekolah untuk menunjukkan
+                  fasilitas
+                </li>
+                <li>
+                  Memberikan pengenalan mengenai ekskul dan kegiatan positif
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cv-section">
+            <h3>Education</h3>
+            <div class="education-item">
+              <h4>Institut Teknologi Sepuluh Nopember (ITS)</h4>
+              <div class="education-date">2024 - Sekarang</div>
+              <p>Departemen Teknologi Informasi - Semester 2</p>
+            </div>
+          </div>
+
+          <!-- PERBAIKAN: Link yang benar ke index.html -->
+          <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Kembali ke Portfolio
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 100) {
+          navbar.style.padding = "0.5rem 5%";
+        } else {
+          navbar.style.padding = "1rem 5%";
+        }
+      });
+
+      // Mobile menu functionality
+      const mobileMenuButton = document.getElementById("mobileMenuButton");
+      const mobileNav = document.getElementById("mobileNav");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileNav.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking on a link
+      const mobileLinks = document.querySelectorAll(".mobile-nav-links a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileNav.classList.remove("active");
+        });
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          !navbar.contains(e.target) &&
+          mobileNav.classList.contains("active")
+        ) {
+          mobileNav.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
+</html>
