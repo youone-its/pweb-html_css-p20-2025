@@ -22,16 +22,18 @@
     }
 
     .navbar {
-      width: 100%;
+      max-width: 800px;
       padding: 15px 30px;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 40px;
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       background: #000000;
+      border-radius: 100px;
       z-index: 1000;
     }
 
@@ -78,7 +80,13 @@
         right: 30px;
       }
       .navbar {
+        width: 100%;
+        max-width: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 0;
         justify-content: space-between;
+        transform: translateX(0);
       }
       .navbar ul {
         display: none;
@@ -203,10 +211,12 @@
     }
     
     #about {
-      background: #fff;
-      color: black;
       width: 100%;
       padding: 100px 20px;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://i.ibb.co.com/xqTZfwrL/ge.png");
+      background-size: cover;
+      background-position: center;
+      color: #fff;
     }
     #about .tile-text {
       text-align: center;
@@ -221,17 +231,21 @@
       font-size: 40px;
       font-weight: 600;
     }
-    #about p {
-      text-align: center;
-      line-height: 1.8;
+    #about .about-content {
       max-width: 900px;
       margin: auto;
+      text-align: center;
+    }
+    #about .about-content p {
+      line-height: 1.8;
+      margin-bottom: 30px;
     }
 
     #experience {
       padding: 100px 20px;
-      max-width: 1300px;
-      margin: auto;
+      background: #fff;
+      color: black;
+      width: 100%;
     }
     #experience .tile-text {
       text-align: center;
@@ -250,9 +264,11 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 30px;
+      max-width: 1300px;
+      margin: auto;
     }
     .exp-card {
-      background: #111;
+      background: #000000;
       border-radius: 12px;
       overflow: hidden;
       text-align: center;
@@ -385,7 +401,13 @@
         right: 30px;
       }
       .navbar {
+        width: 100%;
+        max-width: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 0;
         justify-content: space-between;
+        transform: translateX(0);
       }
       .navbar ul {
         display: none;
@@ -477,7 +499,9 @@
         <p>Portfolio</p>
         <h1>About Me</h1>
     </div>
-    <p>Highly motivated freshman Information Technology student at Sepuluh Nopember Institute of Technology with a strong passion for technology, software development, and data engineering to ensure operational quality. Experienced in project management, graphic design, 3D modeling, and web development, with proven abilities in creative areas and problem solving. Enjoy collaborating in teams and adapt quickly to new environments.</p>
+    <div class="about-content">
+      <p>Highly motivated freshman Information Technology student at Sepuluh Nopember Institute of Technology with a strong passion for technology, software development, and data engineering to ensure operational quality. Experienced in project management, graphic design, 3D modeling, and web development, with proven abilities in creative areas and problem solving. Enjoy collaborating in teams and adapt quickly to new environments.</p>
+    </div>
     <div class="center-button">
       <a href="ini buat kek cv" class="animated-button" target="_blank">See More</a>
     </div>
@@ -498,7 +522,7 @@
         <p>Inclenation 2025 - Staff of Material and Method</p>
       </div>
       <div class="exp-card">
-        <img src="https://i.ibb.co.com/xqTZfwrL/ge.png" alt="Gerigi X UKM Expo">
+        <img src="https://i.ibb.co.com/GQ7DQtMx/geregege.jpg" alt="Gerigi X UKM Expo">
         <p>Gerigi X UKM Expo 2025 - Expert Staff of Secretarial</p>
       </div>
       <div class="exp-card">
