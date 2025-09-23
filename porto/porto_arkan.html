@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohamad Arkan Zahir - Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #f59e0b;
+        --dark: #1f2937;
+        --light: #f8fafc;
+        --gray: #6b7280;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: var(--dark);
+        background-color: var(--light);
+        overflow-x: hidden;
+      }
+
+      /* Navigation */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
+
+      .logo {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 1.5rem;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 0 5%;
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        max-width: 600px;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero h2 {
+        font-size: 1.5rem;
+        color: var(--gray);
+        margin-bottom: 1.5rem;
+        font-weight: 400;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        color: var(--gray);
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: var(--primary);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        border: 2px solid var(--primary);
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      }
+
+      .cta-button:hover {
+        background: transparent;
+        color: var(--primary);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+      }
+
+      .hero-image {
+        position: absolute;
+        right: 5%;
+        bottom: 0;
+        width: 400px;
+        height: 500px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        animation: morph 8s ease-in-out infinite;
+      }
+
+      @keyframes morph {
+        0%,
+        100% {
+          border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        50% {
+          border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+        }
+      }
+
+      /* About Section */
+      .about {
+        padding: 100px 5%;
+        background: white;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: var(--dark);
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .about-text h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+
+      .about-text p {
+        margin-bottom: 1.5rem;
+        color: var(--gray);
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .skill-item {
+        background: var(--light);
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: center;
+        transition: var(--transition);
+        border-left: 4px solid var(--primary);
+      }
+
+      .skill-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Projects Section */
+      .projects {
+        padding: 100px 5%;
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .project-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .project-image {
+        height: 200px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+      }
+
+      .project-content {
+        padding: 1.5rem;
+      }
+
+      .project-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        color: var(--dark);
+      }
+
+      .project-content p {
+        color: var(--gray);
+        font-size: 0.9rem;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--dark);
+        color: white;
+        text-align: center;
+        padding: 2rem 5%;
+      }
+
+      /* CV Page Styles */
+      .cv-container {
+        max-width: 1000px;
+        margin: 100px auto;
+        padding: 0 5%;
+      }
+
+      .cv-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .cv-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+      }
+
+      .cv-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 3rem;
+      }
+
+      .cv-sidebar {
+        background: var(--light);
+        padding: 2rem;
+        border-radius: 15px;
+      }
+
+      .cv-main {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-info {
+        margin-bottom: 2rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .contact-item i {
+        width: 20px;
+        margin-right: 10px;
+        color: var(--primary);
+      }
+
+      .cv-section {
+        margin-bottom: 2rem;
+      }
+
+      .cv-section h3 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--light);
+      }
+
+      .experience-item,
+      .education-item {
+        margin-bottom: 1.5rem;
+      }
+
+      .experience-item h4,
+      .education-item h4 {
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+      }
+
+      .experience-date,
+      .education-date {
+        color: var(--gray);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .skill-tag {
+        background: var(--primary);
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-image {
+          display: none;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cv-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: var(--primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        opacity: 0;
+        transition: var(--transition);
+        z-index: 1000;
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+      }
+
+      .back-to-top:hover {
+        background: var(--primary-dark);
+        transform: translateY(-3px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <a href="index.html" class="logo">ArkanZahir</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="cv.html">CV</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Mohamad Arkan Zahir Asyafiq</h1>
+        <h2>Mahasiswa Teknologi Informasi Semester 2</h2>
+        <p>
+          Selamat datang di portfolio saya! Saya seorang mahasiswa aktif yang
+          passionate tentang pengembangan web, manajemen acara, dan pengembangan
+          sumber daya manusia.
+        </p>
+        <a href="cv.html" class="cta-button"
+          >Lihat CV Lengkap <i class="fas fa-arrow-right"></i
+        ></a>
+      </div>
+      <div class="hero-image"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <h2 class="section-title">Tentang Saya</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <h3>Profil Singkat</h3>
+          <p>
+            Saya Mohamad Arkan Zahir Asyafiq, mahasiswa aktif semester 2
+            Departemen Teknologi Informasi ITS. Memiliki minat besar dalam
+            kepanitiaan, organisasi, manajemen acara, dan pengembangan SDM.
+          </p>
+          <p>
+            Kelebihan saya adalah kemampuan kerja tim yang baik, cepat tanggap,
+            proaktif, dan berorientasi pada detail.
+          </p>
+
+          <h3 style="margin-top: 2rem">Skill Highlights</h3>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <i class="fas fa-users"></i>
+              <h4>Teamwork</h4>
+            </div>
+            <div class="skill-item">
+              <i class="fas fa-tasks"></i>
+              <h4>Manajemen Waktu</h4>
+            </div>
+            <div class="skill-item">
+              <i class="fas fa-chart-line"></i>
+              <h4>Leadership</h4>
+            </div>
+            <div class="skill-item">
+              <i class="fas fa-laptop-code"></i>
+              <h4>Web Development</h4>
+            </div>
+          </div>
+        </div>
+        <div class="about-stats">
+          <h3>Pengalaman Organisasi</h3>
+          <div class="experience-item">
+            <h4>Divisi Acara - PMR WIRA</h4>
+            <div class="experience-date">Jan 2023 - Jul 2024</div>
+            <p>
+              Membantu menentukan tema acara, rundown, anggaran, dan kebutuhan
+              teknis.
+            </p>
+          </div>
+          <div class="experience-item">
+            <h4>Divisi Dakwah - OSIS SMA</h4>
+            <div class="experience-date">Jan 2023 - Aug 2024</div>
+            <p>
+              Sebagai ketua divisi dengan tanggung jawab membuat timeline dan
+              mengarahkan anggota.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+      <h2 class="section-title">Aktivitas & Proyek</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <i class="fas fa-hand-holding-heart"></i>
+          </div>
+          <div class="project-content">
+            <h3>PMR WIRA</h3>
+            <p>
+              Pengalaman dalam divisi acara dengan fokus pada perencanaan dan
+              eksekusi kegiatan.
+            </p>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <i class="fas fa-mosque"></i>
+          </div>
+          <div class="project-content">
+            <h3>Divisi Dakwah OSIS</h3>
+            <p>
+              Kepemimpinan dalam mengelola kegiatan keagamaan dan sosial di
+              sekolah.
+            </p>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="project-content">
+            <h3>Amaliyah Dakwah</h3>
+            <p>
+              Koordinator acara dakwah dengan tanggung jawab pengelolaan
+              logistik dan perizinan.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+      <h3>Hubungi Saya</h3>
+      <p>Email: arkanzahir86@gmail.com | Phone: 089612030168</p>
+      <p>Surabaya, Indonesia</p>
+      <p style="margin-top: 1rem">
+        &copy; 2025 Mohamad Arkan Zahir Asyafiq. All rights reserved.
+      </p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+      <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script>
+      // Back to Top Button
+      const backToTop = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          backToTop.classList.add("visible");
+        } else {
+          backToTop.classList.remove("visible");
+        }
+      });
+
+      backToTop.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 100) {
+          navbar.style.padding = "0.5rem 5%";
+          navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.1)";
+        } else {
+          navbar.style.padding = "1rem 5%";
+          navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.1)";
+        }
+      });
+    </script>
+  </body>
+</html>
