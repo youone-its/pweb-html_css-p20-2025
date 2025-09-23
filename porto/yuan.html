@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background: linear-gradient(to bottom right, #000000, #0d0418);
+      color: #fff;
+    }
+
+    .navbar {
+      max-width: 800px;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000000;
+      border-radius: 100px;
+      z-index: 1000;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+    .navbar ul li a {
+      position: relative;
+      text-decoration: none;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 15px;
+    }
+    .navbar ul li a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%;
+      height: 2px;
+      background: rgb(130, 204, 238);
+      transition: 0.3s;
+    }
+    .navbar ul li a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+    .menu-btn {
+      display: none;
+      font-size: 26px;
+      cursor: pointer;
+      color: #fff;
+    }
+    @media(max-width: 900px) {
+      .menu-btn {
+        display: block;
+        position: absolute;
+        right: 30px;
+      }
+      .navbar {
+        width: 100%;
+        max-width: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 0;
+        justify-content: space-between;
+        transform: translateX(0);
+      }
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        background: #000000;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+      }
+      .menu-toggle:checked ~ ul {
+        display: flex;
+      }
+    }
+
+    .banner {
+      display: flex;
+      height: 100vh;
+      margin-top: 70px;
+      gap: 5px;
+      justify-content: center;
+    }
+    .banner-left {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .banner-left img {
+      max-width: 70%;
+      max-height: 80%;
+      border-radius: 20px;
+      object-fit: contain;
+    }
+    .banner-right {
+      flex: 1.5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      text-align: left;
+    }
+    .banner-right h1 {
+      font-size: 60px;
+      margin-bottom: 20px;
+      color: rgb(130, 204, 238);
+    }
+    .banner-right p {
+      font-size: 20px;
+    }
+
+    .banner-details {
+      padding-right: 0;
+      width: 100%;
+      padding-left: 20px;
+    }
+
+    .detail-item {
+      margin-bottom: 20px;
+    }
+
+    .detail-item h2 {
+      font-size: 30px;
+      color: rgb(130, 204, 238);
+      margin-bottom: 5px;
+    }
+
+    .detail-item p {
+      font-size: 18px;
+    }
+
+    .center-button {
+      text-align: center;
+      margin-top: 40px;
+    }
+    
+    .animated-button {
+      position: relative;
+      display: inline-block;
+      padding: 12px 24px;
+      border: 2px solid rgb(130, 204, 238);
+      border-radius: 100px;
+      text-decoration: none;
+      color: rgb(130, 204, 238);
+      font-weight: 600;
+      overflow: hidden;
+      z-index: 1;
+      transition: color 0.4s;
+    }
+    
+    .animated-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(130, 204, 238);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+      z-index: -1;
+    }
+    
+    .animated-button:hover {
+      color: #fff;
+    }
+    
+    .animated-button:hover::before {
+      transform: scaleX(1);
+    }
+    
+    #about {
+      width: 100%;
+      padding: 100px 20px;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url("../image/desktop/abinara.JPG");
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+    }
+    #about .tile-text {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    #about .tile-text p {
+      color: rgb(130, 204, 238);
+      font-weight: bold;
+      font-size: 20px;
+    }
+    #about .tile-text h1 {
+      font-size: 40px;
+      font-weight: 600;
+    }
+    #about .about-content {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+    #about .about-content p {
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    #experience {
+      padding: 100px 20px;
+      background: #000000;
+      color: black;
+      width: 100%;
+    }
+    #experience .tile-text {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    #experience .tile-text p {
+      color: rgb(130, 204, 238);
+      font-weight: bold;
+      font-size: 20px;
+    }
+    #experience .tile-text h1 {
+      font-size: 40px;
+      font-weight: 600;
+    }
+    .experience-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1300px;
+      margin: auto;
+    }
+    .exp-card {
+      background: #111;
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: center;
+      transition: transform .3s;
+    }
+    .exp-card:hover {
+      transform: translateY(-8px);
+    }
+    .exp-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .exp-card p {
+      padding: 15px;
+      font-size: 18px;
+      color: #fff;
+    }
+
+    #projects {
+      padding: 100px 20px;
+      max-width: 1300px;
+      margin: auto;
+    }
+    #projects .tile-text {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    #projects .tile-text p {
+      color: rgb(130, 204, 238);
+      font-weight: bold;
+      font-size: 20px;
+    }
+    #projects .tile-text h1 {
+      font-size: 40px;
+      font-weight: 600;
+    }
+    .project-row {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    .project-row.reverse {
+      flex-direction: row-reverse;
+    }
+    .project-img {
+      flex: 1;
+    }
+    .project-img img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    .project-desc {
+      flex: 1;
+    }
+    .project-desc h2 {
+      color: rgb(130, 204, 238);
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    #footer {
+      width: 100%;
+      padding: 40px 20px;
+      background: #040404;
+      color: #fff;
+    }
+    .tile-text {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .tile-text p {
+      color: rgb(130, 204, 238);
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .tile-text h1 {
+      font-size: 35px;
+      font-weight: 600;
+    }
+    .footer-row {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .footer-left {
+      flex: 1;
+      min-width: 250px;
+    }
+    .footer-right {
+      flex: 1;
+      min-width: 250px;
+      text-align: right;
+    }
+    .footer-row h1 {
+      margin-bottom: 15px;
+      color: rgb(130, 204, 238);
+      font-size: 20px;
+    }
+    .footer-row a {
+      color: white;
+      text-decoration: none;
+    }
+    .footer-row a:hover {
+      color: rgb(130, 204, 238);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: black;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgb(130, 204, 238);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgb(130, 204, 238);
+    }
+
+    @media(max-width: 900px) {
+      .menu-btn {
+        display: block;
+        position: absolute;
+        right: 30px;
+      }
+      .navbar {
+        width: 100%;
+        max-width: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 0;
+        justify-content: space-between;
+        transform: translateX(0);
+      }
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        background: #000000;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+      }
+      .menu-toggle:checked ~ ul {
+        display: flex;
+      }
+      
+      .banner {
+        flex-direction: column;
+        height: auto;
+        padding-top: 100px;
+      }
+      .banner-left img {
+        margin-bottom: 20px;
+        max-height: 50vh;
+      }
+      .banner-right {
+        text-align: center;
+        padding-left: 0;
+      }
+      .banner-right h1 {
+        margin-right: 0;
+      }
+      .project-row {
+        flex-direction: column;
+      }
+      .project-row.reverse {
+        flex-direction: column;
+      }
+      .footer-row {
+        justify-content: center;
+        text-align: center;
+      }
+      .footer-left, .footer-right {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="menu-btn"><i class="fa fa-bars"></i></label>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+    </ul>
+    <a href="../cv/cvyuan.html" class="animated-button" target="_self">See More</a>
+  </div>
+
+  <section id="home" class="banner">
+    <div class="banner-left">
+      <img src="../image/desktop/2_yuan.png" alt="Profile Photo">
+    </div>
+    <div class="banner-right">
+      <div class="banner-details">
+        <div class="detail-item">
+          <h2>Name</h2>
+          <p>| Yuan Banny Albyan</p>
+        </div>
+        <div class="detail-item">
+          <h2>Education</h2>
+          <p>| Sepuluh Nopember Institute of Technology</p>
+        </div>
+        <div class="detail-item">
+          <h2>Status </h2>
+          <p>| Hi there! I'm using WhatsApp!</p>
+        </div>
+        <div class="detail-item">
+          <h2>Location</h2>
+          <p>| Indonesia</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="tile-text">
+        <p>Experience</p>
+        <h1>About Me</h1>
+    </div>
+    <div class="about-content">
+      <p>Mahasiswa Departemen Teknologi Informasi ITS. Goal oriented, cepat belajar, berpengalaman di robotika dan pengembangan aplikasi. Saya suka merancang solusi praktis yang bekerja di dunia nyata, menggabungkan desain dan engineering.</p>
+    </div>
+    <div class="center-button">
+      <a href="../cv/cvyuan.html" class="animated-button" target="_self">See More</a>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="tile-text">
+        <p>Experience</p>
+    </div>
+    <div class="experience-gallery">
+      <div class="exp-card">
+        <img src="../image/desktop/abinara.JPG" alt="Elite x Pesraf">
+        <p>Abinara-1 Phynix3 - Staff of Programming</p>
+      </div>
+      <div class="exp-card">
+        <img src="../image/desktop/arayuan.png" alt="Inclenation">
+        <p>ARA 6.0 - Staff of OlimpIT</p>
+      </div>
+      <div class="exp-card">
+        <img src="../image/desktop/interaksiku.png" alt="Gerigi X UKM Expo">
+        <p>Interaksiku - Staff Pengembang Alat</p>
+      </div>
+      <div class="exp-card">
+        <img src="../image/desktop/ukmro.png" alt="ARA 7.0">
+        <p>UKM Robotik - Staff WebDev</p>
+      </div>
+    </div>
+    <div class="center-button">
+      <a href="../cv/cvyuan.html" class="animated-button" target="_self">See More</a>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="tile-text">
+        <p>Portfolio</p>
+        <h1>Projects</h1>
+    </div>
+    <div class="project-row">
+      <div class="project-img">
+        <img src="../image/desktop/robarm4dof.png" alt="Project 1">
+      </div>
+      <div class="project-desc">
+        <h2>Robot Arm 5-DOF</h2>
+        <p>Robot arm yang memiliki Degree of Freedom sebanyak 5 dimensi, dimulai dari bawah ke atas yaitu yaw-pitch-pitch-pitch-roll, menggunakan Invers Kinematik sederhana untuk pergerakannya, berbasis stm, DC motor dan potensio dari elektrikal, dan bahan besi, sehingga berat total robot mencapai lebih dari 20 Kg, digunakan untuk berbagai macam hal, biasanya untuk pick and place, atau sekadar robot edukasi</p>
+      </div>
+    </div>
+    <div class="project-row">
+      <div class="project-img">
+        <img src="../image/desktop/robodog.png" alt="Project 1">
+      </div>
+      <div class="project-desc">
+        <h2>Robodog Fiammetta</h2>
+        <p>Fiammetta merupakan quadruped, yaitu robot yang memiliki konfigurasi kaki 4 dengan model anjing (robodog), pengerjaan fiammetta menggunakan proses reinforcement learning yang masih berlangsung hingga saat ini, untuk menentukan pose dan aksi reaksi dari sensor (IMU, Lidar, dan feedback dari motor) ke masing masing aktuator di joint coxa femur tibia, lalu di masing masing motor juga direinforcement learning melalui ANN custom agar antara simulasi dan real-world memiliki aksi yang semirip mungkin</p>
+      </div>
+    </div>
+    <div class="project-row">
+      <div class="project-img">
+        <img src="../image/desktop/interaksikuproj.png" alt="Project 1">
+      </div>
+      <div class="project-desc">
+        <h2>Game Interaktif untuk Anak Berkebutuhan Khusus</h2>
+        <p>Membuat Game interaktif menggunakan scratch + opencv dan mediapipe untuk membuat media lain (papan tulis / tembok) sebagai "layar" permainan, dan memberikan edukasi pada para guru agar dapat membuat game atau sekadar memainkan game menggunakan yang sudah tersedia di platform scratch menggunakan opencv+mediapipe sebelumnya</p>
+      </div>
+    </div>
+    <div class="project-row">
+      <div class="project-img">
+        <img src="../image/desktop/epics.png" alt="Project 1">
+      </div>
+      <div class="project-desc">
+        <h2>Mobile Apps Kebun Raya Balikpapan</h2>
+        <p>Sebuah aplikasi mobile untuk menunjang edukasi di Kebun Raya Balikpapan, memiliki fitur AR, 360 map virtual tour, Ensiklopedia, dan Quiz, menggunakan unity game engine untuk base nya (sebelumnya menggunakan flutter, tapi karna eror dependencies terkait AR, jadinya pindahin Unity)</p>
+      </div>
+    </div>
+    <div class="center-button">
+      <a href="../cv/cvyuan.html" class="animated-button" target="_self">See More</a>
+    </div>
+  </section>
+
+  <section id="footer">
+    <div class="tile-text">
+      <p>Portfolio</p>
+      <h1>My Contact</h1>
+    </div>
+    <div class="footer-row">
+      <div class="footer-left">
+        <h1>Social Media</h1>
+        <p><a href="https://www.instagram.com/weng._136" target="_self">Instagram</a></p>
+        <p><a href="https://www.linkedin.com/in/yuan-banny-albyan-670338312?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_self">LinkedIn </a></p>
+        <p><a href="https://github.com/youone-its" target="_self">GitHub </a></p>
+      </div>
+      <div class="footer-right">
+        <h1>Get In Touch</h1>
+        <p><a href="https://www.google.com/maps/search/?api=1&query=Banten+Indonesia" target="_self"><i class="fa fa-map-marker"></i> Surabaya, Jawa Timur</a></p>
+        <p><i class="fa fa-envelope"></i> yuanalbyan13@gmail.com</p>
+        <p><i class="fa fa-phone"></i> +62 8123456789</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
