@@ -107,18 +107,22 @@
       }
 
       .cv-photo {
+        margin-bottom: 1rem;
+      }
+
+      .cv-photo img {
         width: 150px;
         height: 150px;
         border-radius: 50%;
-        margin: 0 auto 1rem;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 3rem;
+        object-fit: cover;
         border: 5px solid white;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: var(--transition);
+      }
+
+      .cv-photo img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
       }
 
       .cv-header h1 {
@@ -281,95 +285,25 @@
         .cv-header h1 {
           font-size: 2rem;
         }
-
-        .mobile-menu-button {
-          display: block;
-        }
-      }
-
-      /* Mobile Menu */
-      .mobile-menu-button {
-        display: none;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        color: var(--dark);
-        cursor: pointer;
-      }
-
-      .mobile-nav {
-        display: none;
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: white;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-      }
-
-      .mobile-nav.active {
-        display: block;
-      }
-
-      .mobile-nav-links {
-        display: flex;
-        flex-direction: column;
-        padding: 1rem;
-      }
-
-      .mobile-nav-links a {
-        padding: 1rem;
-        text-decoration: none;
-        color: var(--dark);
-        border-bottom: 1px solid var(--light);
-        transition: var(--transition);
-      }
-
-      .mobile-nav-links a:hover {
-        color: var(--primary);
-        background: var(--light);
-      }
-
-      @media (max-width: 768px) {
-        .mobile-menu-button {
-          display: block;
-        }
-
-        .nav-links {
-          display: none;
-        }
       }
     </style>
   </head>
   <body>
     <!-- Navigation -->
     <nav class="navbar">
-      <a href="index.html" class="logo">ArkanZahir</a>
+      <a href="../porto/porto_arkan.html" class="logo">ArkanZahir</a>
       <div class="nav-links">
-        <a href="index.html">Home</a>
+        <a href="../porto/porto_arkan.html">Home</a>
         <a href="cv.html" style="color: var(--primary)">CV</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../porto/porto_arkan.html#contact">Contact</a>
       </div>
-      <button class="mobile-menu-button" id="mobileMenuButton">
-        <i class="fas fa-bars"></i>
-      </button>
     </nav>
-
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-      <div class="mobile-nav-links">
-        <a href="index.html">Home</a>
-        <a href="cv.html">CV</a>
-        <a href="index.html#contact">Contact</a>
-      </div>
-    </div>
 
     <!-- CV Content -->
     <div class="cv-container">
       <div class="cv-header">
         <div class="cv-photo">
-          <i class="fas fa-user"></i>
+          <img src="../image/desktop/2_arkan.png" alt="Mohamad Arkan Zahir" />
         </div>
         <h1>Mohamad Arkan Zahir Asyafiq</h1>
         <h2>Mahasiswa Teknologi Informasi Semester 2</h2>
@@ -521,8 +455,7 @@
             </div>
           </div>
 
-          <!-- PERBAIKAN: Link yang benar ke index.html -->
-          <a href="index.html" class="back-button">
+          <a href="../porto/porto_arkan.html" class="back-button">
             <i class="fas fa-arrow-left"></i> Kembali ke Portfolio
           </a>
         </div>
@@ -537,32 +470,6 @@
           navbar.style.padding = "0.5rem 5%";
         } else {
           navbar.style.padding = "1rem 5%";
-        }
-      });
-
-      // Mobile menu functionality
-      const mobileMenuButton = document.getElementById("mobileMenuButton");
-      const mobileNav = document.getElementById("mobileNav");
-
-      mobileMenuButton.addEventListener("click", () => {
-        mobileNav.classList.toggle("active");
-      });
-
-      // Close mobile menu when clicking on a link
-      const mobileLinks = document.querySelectorAll(".mobile-nav-links a");
-      mobileLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileNav.classList.remove("active");
-        });
-      });
-
-      // Close mobile menu when clicking outside
-      document.addEventListener("click", (e) => {
-        if (
-          !navbar.contains(e.target) &&
-          mobileNav.classList.contains("active")
-        ) {
-          mobileNav.classList.remove("active");
         }
       });
     </script>
