@@ -29,6 +29,10 @@
         box-sizing: border-box;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         font-family: "Poppins", sans-serif;
         line-height: 1.6;
@@ -91,6 +95,56 @@
 
       .nav-links a:hover::after {
         width: 100%;
+      }
+
+      /* Mobile Menu - Pure CSS */
+      .mobile-menu-toggle {
+        display: none;
+      }
+
+      .mobile-menu-button {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--dark);
+        cursor: pointer;
+      }
+
+      .mobile-nav {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .mobile-menu-toggle:checked ~ .mobile-nav {
+        max-height: 300px;
+      }
+
+      .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+      }
+
+      .mobile-nav-links a {
+        padding: 1rem;
+        text-decoration: none;
+        color: var(--dark);
+        border-bottom: 1px solid var(--light);
+        transition: var(--transition);
+      }
+
+      .mobile-nav-links a:hover {
+        color: var(--primary);
+        background: var(--light);
       }
 
       /* Hero Section */
@@ -415,51 +469,7 @@
         transform: translateY(-3px);
       }
 
-      /* Mobile Menu */
-      .mobile-menu-button {
-        display: none;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        color: var(--dark);
-        cursor: pointer;
-      }
-
-      .mobile-nav {
-        display: none;
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: white;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-      }
-
-      .mobile-nav.active {
-        display: block;
-      }
-
-      .mobile-nav-links {
-        display: flex;
-        flex-direction: column;
-        padding: 1rem;
-      }
-
-      .mobile-nav-links a {
-        padding: 1rem;
-        text-decoration: none;
-        color: var(--dark);
-        border-bottom: 1px solid var(--light);
-        transition: var(--transition);
-      }
-
-      .mobile-nav-links a:hover {
-        color: var(--primary);
-        background: var(--light);
-      }
-
-      /* Back to Top Button */
+      /* Back to Top Button - CSS Only */
       .back-to-top {
         position: fixed;
         bottom: 30px;
@@ -473,19 +483,31 @@
         align-items: center;
         justify-content: center;
         text-decoration: none;
-        opacity: 0;
         transition: var(--transition);
         z-index: 1000;
         box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        opacity: 0;
+        pointer-events: none;
       }
 
-      .back-to-top.visible {
-        opacity: 1;
+      /* Show back to top when user scrolls */
+      body:not(:target) .back-to-top {
+        animation: fadeIn 0.5s ease 2s forwards;
       }
 
       .back-to-top:hover {
         background: var(--primary-dark);
         transform: translateY(-3px);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+          pointer-events: auto;
+        }
       }
 
       /* Responsive Design */
@@ -568,27 +590,37 @@
     </style>
   </head>
   <body>
+    <!-- Navigation -->
     <nav class="navbar">
-      <a href="porto_arkan.html" class="logo">ArkanZahir</a>
+      <a href="#" class="logo">ArkanZahir</a>
       <div class="nav-links">
-        <a href="porto_arkan.html" style="color: var(--primary)">Home</a>
+        <a href="#" style="color: var(--primary)">Home</a>
         <a href="../cv/cv.html">CV</a>
         <a href="#contact">Contact</a>
       </div>
-      <button class="mobile-menu-button" id="mobileMenuButton">
+
+      <!-- Mobile Menu Toggle - Pure CSS -->
+      <input
+        type="checkbox"
+        id="mobile-menu-toggle"
+        class="mobile-menu-toggle"
+      />
+      <label for="mobile-menu-toggle" class="mobile-menu-button">
         <i class="fas fa-bars"></i>
-      </button>
+      </label>
     </nav>
 
-    <div class="mobile-nav" id="mobileNav">
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
       <div class="mobile-nav-links">
-        <a href="porto_arkan.html">Home</a>
+        <a href="#">Home</a>
         <a href="../cv/cv.html">CV</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
 
-    <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
       <div class="hero-content">
         <h1>Mohamad Arkan Zahir Asyafiq</h1>
         <h2>Mahasiswa Teknologi Informasi Semester 2</h2>
@@ -602,13 +634,14 @@
         </a>
       </div>
       <div class="hero-image">
+        <!-- FOTO ARKAN - COBA BERBAGAI PATH -->
         <img
           src="../image/desktop/2_arkan.png"
           alt="Mohamad Arkan Zahir"
           class="profile-photo"
-          onerror="this.style.display='none'; document.getElementById('placeholderPhoto').style.display='flex';"
         />
 
+        <!-- Placeholder jika foto tidak ditemukan -->
         <div
           id="placeholderPhoto"
           class="profile-photo placeholder"
@@ -621,6 +654,7 @@
       </div>
     </section>
 
+    <!-- About Section -->
     <section class="about" id="about">
       <h2 class="section-title">Tentang Saya</h2>
       <div class="about-content">
@@ -687,6 +721,7 @@
       </div>
     </section>
 
+    <!-- Projects Section -->
     <section class="projects" id="projects">
       <h2 class="section-title">Aktivitas & Proyek</h2>
       <div class="projects-grid">
@@ -729,6 +764,7 @@
       </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer" id="contact">
       <h3>Hubungi Saya</h3>
       <p>Email: arkanzahir86@gmail.com</p>
@@ -745,16 +781,12 @@
         <a
           href="http://www.linkedin.com/in/arkan-zahir-5b4a77340"
           title="LinkedIn"
-          target="_blank"
-          rel="noopener noreferrer"
         >
           <i class="fab fa-linkedin"></i>
         </a>
         <a
           href="https://www.instagram.com/m.arkanz?igsh=MTY5YmoydWhsNHMwaQ=="
           title="Instagram"
-          target="_blank"
-          rel="noopener noreferrer"
         >
           <i class="fab fa-instagram"></i>
         </a>
@@ -765,78 +797,9 @@
       </p>
     </footer>
 
-    <a href="#" class="back-to-top" id="backToTop">
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" title="Back to Top">
       <i class="fas fa-chevron-up"></i>
     </a>
-
-    <script>
-      const backToTop = document.getElementById("backToTop");
-
-      window.addEventListener("scroll", () => {
-        if (window.pageYOffset > 300) {
-          backToTop.classList.add("visible");
-        } else {
-          backToTop.classList.remove("visible");
-        }
-      });
-
-      backToTop.addEventListener("click", (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-
-      window.addEventListener("scroll", () => {
-        const navbar = document.querySelector(".navbar");
-        if (window.scrollY > 100) {
-          navbar.style.padding = "0.5rem 5%";
-          navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.1)";
-        } else {
-          navbar.style.padding = "1rem 5%";
-          navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.1)";
-        }
-      });
-
-      const mobileMenuButton = document.getElementById("mobileMenuButton");
-      const mobileNav = document.getElementById("mobileNav");
-
-      mobileMenuButton.addEventListener("click", () => {
-        mobileNav.classList.toggle("active");
-      });
-
-      const mobileLinks = document.querySelectorAll(".mobile-nav-links a");
-      mobileLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileNav.classList.remove("active");
-        });
-      });
-
-      document.addEventListener("click", (e) => {
-        if (
-          !document.querySelector(".navbar").contains(e.target) &&
-          mobileNav.classList.contains("active")
-        ) {
-          mobileNav.classList.remove("active");
-        }
-      });
-
-      document.addEventListener("DOMContentLoaded", function () {
-        const photo = document.querySelector(".profile-photo[src]");
-        const placeholder = document.getElementById("placeholderPhoto");
-
-        if (photo) {
-          photo.onerror = function () {
-            this.style.display = "none";
-            placeholder.style.display = "flex";
-          };
-
-          photo.onload = function () {
-            placeholder.style.display = "none";
-            this.style.display = "block";
-          };
-        } else {
-          placeholder.style.display = "flex";
-        }
-      });
-    </script>
   </body>
 </html>
