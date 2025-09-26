@@ -293,6 +293,32 @@
         color: var(--dark);
       }
 
+      .experience-item {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: var(--light);
+        border-radius: 10px;
+        border-left: 4px solid var(--primary);
+      }
+
+      .experience-item h4 {
+        color: var(--primary);
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .experience-date {
+        color: var(--secondary);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .experience-item p {
+        color: var(--gray);
+        line-height: 1.6;
+      }
+
       /* Projects Section */
       .projects {
         padding: 100px 5%;
@@ -542,7 +568,6 @@
     </style>
   </head>
   <body>
-    <!-- Navigation -->
     <nav class="navbar">
       <a href="porto_arkan.html" class="logo">ArkanZahir</a>
       <div class="nav-links">
@@ -555,7 +580,6 @@
       </button>
     </nav>
 
-    <!-- Mobile Navigation -->
     <div class="mobile-nav" id="mobileNav">
       <div class="mobile-nav-links">
         <a href="porto_arkan.html">Home</a>
@@ -564,7 +588,6 @@
       </div>
     </div>
 
-    <!-- Hero Section -->
     <section class="hero">
       <div class="hero-content">
         <h1>Mohamad Arkan Zahir Asyafiq</h1>
@@ -579,7 +602,6 @@
         </a>
       </div>
       <div class="hero-image">
-        <!-- FOTO ARKAN - COBA BERBAGAI PATH -->
         <img
           src="../image/desktop/2_arkan.png"
           alt="Mohamad Arkan Zahir"
@@ -587,7 +609,6 @@
           onerror="this.style.display='none'; document.getElementById('placeholderPhoto').style.display='flex';"
         />
 
-        <!-- Placeholder jika foto tidak ditemukan -->
         <div
           id="placeholderPhoto"
           class="profile-photo placeholder"
@@ -600,7 +621,6 @@
       </div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="about">
       <h2 class="section-title">Tentang Saya</h2>
       <div class="about-content">
@@ -667,7 +687,6 @@
       </div>
     </section>
 
-    <!-- Projects Section -->
     <section class="projects" id="projects">
       <h2 class="section-title">Aktivitas & Proyek</h2>
       <div class="projects-grid">
@@ -710,7 +729,6 @@
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer" id="contact">
       <h3>Hubungi Saya</h3>
       <p>Email: arkanzahir86@gmail.com</p>
@@ -724,10 +742,20 @@
         <a href="https://wa.me/6289612030168" title="WhatsApp">
           <i class="fab fa-whatsapp"></i>
         </a>
-        <a href="#" title="LinkedIn">
+        <a
+          href="http://www.linkedin.com/in/arkan-zahir-5b4a77340"
+          title="LinkedIn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <i class="fab fa-linkedin"></i>
         </a>
-        <a href="#" title="Instagram">
+        <a
+          href="https://www.instagram.com/m.arkanz?igsh=MTY5YmoydWhsNHMwaQ=="
+          title="Instagram"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <i class="fab fa-instagram"></i>
         </a>
       </div>
@@ -737,13 +765,11 @@
       </p>
     </footer>
 
-    <!-- Back to Top Button -->
     <a href="#" class="back-to-top" id="backToTop">
       <i class="fas fa-chevron-up"></i>
     </a>
 
     <script>
-      // Back to Top Button
       const backToTop = document.getElementById("backToTop");
 
       window.addEventListener("scroll", () => {
@@ -759,7 +785,6 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
 
-      // Navbar scroll effect
       window.addEventListener("scroll", () => {
         const navbar = document.querySelector(".navbar");
         if (window.scrollY > 100) {
@@ -771,7 +796,6 @@
         }
       });
 
-      // Mobile menu functionality
       const mobileMenuButton = document.getElementById("mobileMenuButton");
       const mobileNav = document.getElementById("mobileNav");
 
@@ -779,7 +803,6 @@
         mobileNav.classList.toggle("active");
       });
 
-      // Close mobile menu when clicking on a link
       const mobileLinks = document.querySelectorAll(".mobile-nav-links a");
       mobileLinks.forEach((link) => {
         link.addEventListener("click", () => {
@@ -787,7 +810,6 @@
         });
       });
 
-      // Close mobile menu when clicking outside
       document.addEventListener("click", (e) => {
         if (
           !document.querySelector(".navbar").contains(e.target) &&
@@ -797,19 +819,16 @@
         }
       });
 
-      // Auto-show placeholder if no photo
       document.addEventListener("DOMContentLoaded", function () {
         const photo = document.querySelector(".profile-photo[src]");
         const placeholder = document.getElementById("placeholderPhoto");
 
-        // Check if photo fails to load
         if (photo) {
           photo.onerror = function () {
             this.style.display = "none";
             placeholder.style.display = "flex";
           };
 
-          // Check if photo loads successfully
           photo.onload = function () {
             placeholder.style.display = "none";
             this.style.display = "block";
