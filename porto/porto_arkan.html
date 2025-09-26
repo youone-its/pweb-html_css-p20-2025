@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+/* Navigation */<!DOCTYPE html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -97,7 +97,6 @@
         width: 100%;
       }
 
-      /* Mobile Menu - Pure CSS */
       .mobile-menu-toggle {
         display: none;
       }
@@ -147,7 +146,6 @@
         background: var(--light);
       }
 
-      /* Hero Section */
       .hero {
         min-height: 100vh;
         display: flex;
@@ -267,7 +265,6 @@
         }
       }
 
-      /* About Section */
       .about {
         padding: 100px 5%;
         background: white;
@@ -373,7 +370,6 @@
         line-height: 1.6;
       }
 
-      /* Projects Section */
       .projects {
         padding: 100px 5%;
         background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
@@ -426,7 +422,6 @@
         line-height: 1.6;
       }
 
-      /* Footer */
       .footer {
         background: var(--dark);
         color: white;
@@ -469,7 +464,6 @@
         transform: translateY(-3px);
       }
 
-      /* Back to Top Button - CSS Only */
       .back-to-top {
         position: fixed;
         bottom: 30px;
@@ -490,7 +484,6 @@
         pointer-events: none;
       }
 
-      /* Show back to top when user scrolls */
       body:not(:target) .back-to-top {
         animation: fadeIn 0.5s ease 2s forwards;
       }
@@ -510,7 +503,6 @@
         }
       }
 
-      /* Responsive Design */
       @media (max-width: 968px) {
         .hero {
           flex-direction: column;
@@ -590,7 +582,6 @@
     </style>
   </head>
   <body>
-    <!-- Navigation -->
     <nav class="navbar">
       <a href="#" class="logo">ArkanZahir</a>
       <div class="nav-links">
@@ -599,7 +590,6 @@
         <a href="#contact">Contact</a>
       </div>
 
-      <!-- Mobile Menu Toggle - Pure CSS -->
       <input
         type="checkbox"
         id="mobile-menu-toggle"
@@ -610,7 +600,6 @@
       </label>
     </nav>
 
-    <!-- Mobile Navigation -->
     <div class="mobile-nav">
       <div class="mobile-nav-links">
         <a href="#">Home</a>
@@ -619,7 +608,6 @@
       </div>
     </div>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
       <div class="hero-content">
         <h1>Mohamad Arkan Zahir Asyafiq</h1>
@@ -634,14 +622,12 @@
         </a>
       </div>
       <div class="hero-image">
-        <!-- FOTO ARKAN - COBA BERBAGAI PATH -->
         <img
           src="../image/desktop/2_arkan.png"
           alt="Mohamad Arkan Zahir"
           class="profile-photo"
         />
 
-        <!-- Placeholder jika foto tidak ditemukan -->
         <div
           id="placeholderPhoto"
           class="profile-photo placeholder"
@@ -654,7 +640,6 @@
       </div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="about">
       <h2 class="section-title">Tentang Saya</h2>
       <div class="about-content">
@@ -721,7 +706,6 @@
       </div>
     </section>
 
-    <!-- Projects Section -->
     <section class="projects" id="projects">
       <h2 class="section-title">Aktivitas & Proyek</h2>
       <div class="projects-grid">
@@ -764,7 +748,6 @@
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer" id="contact">
       <h3>Hubungi Saya</h3>
       <p>Email: arkanzahir86@gmail.com</p>
@@ -797,7 +780,6 @@
       </p>
     </footer>
 
-    <!-- Back to Top Button -->
     <a href="#home" class="back-to-top" title="Back to Top">
       <i class="fas fa-chevron-up"></i>
     </a>
